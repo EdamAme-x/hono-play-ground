@@ -11,9 +11,13 @@
     "wrangler:deploy": "wrangler deploy --minify ./server/index.ts"
   },
   "dependencies": {
+    "@hono/node-server": "^1.5.0",
+    "@hono/vite-dev-server": "^0.4.1",
     "hono": "^4.0.0-rc.3"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@types/node": "^20.11.9",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
@@ -22,8 +26,6 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "@cloudflare/workers-types": "^4.20231218.0",
-    "@types/node": "^20.11.9",
     "wrangler": "^3.22.0"
   }
 }
