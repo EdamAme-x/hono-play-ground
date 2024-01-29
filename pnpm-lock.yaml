@@ -14,6 +14,12 @@ dependencies:
   hono:
     specifier: ^4.0.0-rc.3
     version: 4.0.0-rc.3
+  jsx:
+    specifier: link:@types/hono/jsx
+    version: link:@types/hono/jsx
+  promiees:
+    specifier: link:node:fs/promiees
+    version: link:node:fs/promiees
 
 devDependencies:
   '@cloudflare/workers-types':
