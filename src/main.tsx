@@ -1,5 +1,13 @@
-import App from './App.tsx'
-import './index.css'
-import { render } from 'hono/jsx/dom'
+import App from "./App.tsx";
+import "./index.css";
+import { render } from "hono/jsx/dom";
+import { ThemeProvider } from "./lib/theme.tsx";
 
-render(<App />, document.getElementById('root')!)
+render(
+    <>
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
+    </>,
+    document.getElementById("root")!
+);
