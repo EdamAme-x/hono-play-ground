@@ -15,10 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,8 +28,19 @@ jobs:
         uses: pnpm/action-setup@v2
       - name: Install dependencies
         run: pnpm install
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Build
         run: pnpm run build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
