@@ -1,3 +1,7 @@
+# Cloudflare
+dist
+.wrangler
+
 # Logs
 logs
 *.log
