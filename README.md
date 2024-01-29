@@ -1,5 +1,5 @@
 # Hono Playground
-Aiming for Official Playground.
+This project aiming for Official Playground.
 
 ## Stacks
 - Hono
