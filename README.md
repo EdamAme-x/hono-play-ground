@@ -1,4 +1,5 @@
 # Hono Playground
+Aiming for Official Playground.
 
 ## Stacks
 - Hono
