@@ -1,0 +1,15 @@
+.label {
+    filter: drop-shadow(0 0 1px #d2d2d2);
+}
+
+.icon {
+    filter: drop-shadow(0 0 4px #60a5fa);
+}
+
+.dark .circle {
+    filter: drop-shadow(0 0 5px #f0f0f0);
+}
+
+.circle {
+    filter: drop-shadow(0 0 5px #424242);
+}
