@@ -2,8 +2,8 @@ import { Hono } from 'hono'
 import { poweredBy } from 'hono/powered-by'
 import { serve } from "@hono/node-server"
 import { serveStatic } from "@hono/node-server/serve-static"
-import { readFile } from "node:fs/promises"
-import viteConfig from "../vite.config"
+import { readFile } from "fs/promises"
+import { PORT } from './config'
 
 const isProduction = process.env["NODE_ENV"] === "production"
 let html = await readFile(isProduction ? "build/index.html" : "index.html", "utf8")
@@ -25,7 +25,7 @@ app.use("/assets/*", serveStatic({ root: isProduction ? "build/" : "./" })).get(
 export default app
 
 if (isProduction) {
-    serve({ ...app, port: viteConfig.server?.port }, info => {
+    serve({ ...app, port: PORT }, info => {
         console.log(`Listening on http://localhost:${info.port}`);
     });
 }
