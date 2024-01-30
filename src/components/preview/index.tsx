@@ -32,13 +32,13 @@ export const Preview = memo(({ content, setContent }: { content: string; setCont
         import(/* @vite-ignore */ blobURL)
             .then((app) => {
                 setApp(app.default)
+                console.log("Builded")
+                console.log(app)
             })
             .catch((e) => {
                 console.error(e)
             })
     }, [app, blobURL])
-
-    console.log(app)
 
     return <div class="flex min-h-screen w-full items-center justify-center">{content}</div>;
 });
