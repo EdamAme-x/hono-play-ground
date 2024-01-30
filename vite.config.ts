@@ -1,10 +1,15 @@
 import { defineConfig } from "vite";
 import path from "path";
 import react from "@vitejs/plugin-react-swc";
+import topLevelAwait from "vite-plugin-top-level-await";
 
 export default defineConfig({
     plugins: [
         react(),
+        topLevelAwait({
+            promiseExportName: "__tla",
+            promiseImportName: i => `__tla_${i}`
+        })
     ],
     server: {
         port: 3000,

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import initSwc, { transformSync } from "@swc/wasm-web";
 import { Panel } from "./panel";
 const importSource = `import { jsx, Fragment } from 'https://esm.sh/hono/jsx'\n`;
-
 await initSwc();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
