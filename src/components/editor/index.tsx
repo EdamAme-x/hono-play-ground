@@ -1,12 +1,24 @@
+import { LS } from "@/lib/localStorage";
+import { default as MonacoEditor } from "@monaco-editor/react";
+
 export function Editor({ content, setCotent }: { content: string; setCotent: (content: string) => void }) {
     return (
-        <div class="flex min-h-screen w-full items-center justify-center">
-            <textarea
-                onChange={(e: Event) => setCotent((e.target as HTMLTextAreaElement).value)}
-                class="min-h-[95%] w-[95%] rounded-md bg-white p-2 outline-none dark:bg-gray-800"
-            >
-                {content}
-            </textarea>
+        <div className="my-[2.5vh] flex min-h-[95vh] w-[95%] min-w-[400px] items-center justify-center rounded-sm md:w-1/2">
+            <MonacoEditor
+                options={{
+                    minimap: {
+                        enabled: false,
+                    },
+                }}
+                defaultValue={content}
+                onChange={(value) => {
+                    setCotent(value ?? "");
+                    LS.set("config", JSON.stringify({ ...JSON.parse(LS.get("config") ?? "{}"), content: value ?? "" }));
+                }}
+                theme="vs-dark"
+                defaultLanguage="javascript"
+                language="typescript"
+            />
         </div>
     );
 }

@@ -1,10 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "hono/jsx";
-import HonoJSX from "hono/jsx";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
 
 type ThemeProviderProps = {
-    children: HonoJSX.Child;
+    children: React.ReactNode;
     defaultTheme?: Theme;
     storageKey?: string;
 };

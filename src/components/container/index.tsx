@@ -1,6 +1,6 @@
 // Editor <=> Preview
 
-import { useState } from "hono/jsx";
+import { useState } from "react";
 import { defaultConfig } from "./defaultConfig";
 import { LS } from "@/lib/localStorage";
 import { Editor } from "../editor";
@@ -23,7 +23,7 @@ export function Container() {
 
     return (
         <>
-            <div class="flex justify-between">
+            <div className="flex flex-wrap justify-center">
                 <Editor
                     content={config.content}
                     setCotent={(content: string) =>

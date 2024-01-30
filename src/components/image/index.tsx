@@ -12,5 +12,5 @@ export function Image({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }) {
-    return <img src={src} srcset={`${src} 1x, ${src} 2x`} alt={alt} width={width} height={height} loading="lazy" {...props} />;
+    return <img src={src} srcSet={`${src} 1x, ${src} 2x`} alt={alt} width={width} height={height} loading="lazy" {...props} />;
 }

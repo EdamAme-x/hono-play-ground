@@ -4,9 +4,7 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
     plugins: [
-        react({
-            jsxImportSource: "hono/jsx",
-        }),
+        react(),
     ],
     server: {
         port: 3000,

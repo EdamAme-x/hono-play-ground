@@ -75,17 +75,11 @@
     }
 }
 
-/* Internet Explorer 10+, Edge */
-body {
-    -ms-overflow-style: none;
-}
-
-/* Firefox */
-body {
-    scrollbar-width: none;
-}
-
-/* WebKit (Chrome, Safari, Edge) */
 body::-webkit-scrollbar {
     display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
