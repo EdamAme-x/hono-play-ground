@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { cn } from "@/lib/utils";
+import { Badge } from "../../ui/badge";
 
 export function Panel({ app, buildStatus }: { app: Hono; buildStatus: "success" | "building" | "error" }) {
     const [config, setConfig] = useState({
@@ -13,26 +14,41 @@ export function Panel({ app, buildStatus }: { app: Hono; buildStatus: "success" 
         ok: true,
         headers: new Headers(),
         request: "/hello?name=hono",
-        method: "GET"
+        method: "GET",
     });
-    console.log(buildStatus);
 
     const updateConfig = async () => {
         const response = await app.request("http://localhost" + normalizationPayh(config.request), {
             method: config.method,
-            headers: config.headers
+            headers: config.headers,
         });
+
+        if (typeof response === 'function') {
+
+            setConfig({
+                ...config,
+                response: "You're most likely using Middeware incorrectly.",
+                statusCode: 500,
+                ok: false,
+            });
+
+            return
+        }
+
+        const text = await response.text();
+
         setConfig({
             ...config,
             ok: response.ok,
-            response: await response.text(),
+            response: text,
             statusCode: response.status,
-            headers: response.headers
+            headers: response.headers,
         });
-    }
+    };
 
     return (
-        <div className="border-separate rounded-md border border-gray-300 p-4 shadow-md">
+        buildStatus === "success" && (
+            <div className="border-separate rounded-md border border-gray-300 p-4 shadow-md">
             <div className="mb-4 flex gap-2">
                 <Select onValueChange={(value) => setConfig({ ...config, method: value })} defaultValue={config.method}>
                     <SelectTrigger className="w-[180px]">
@@ -55,26 +71,45 @@ export function Panel({ app, buildStatus }: { app: Hono; buildStatus: "success" 
                     onKeyDown={(e) => e.key === "Enter" && updateConfig()}
                     placeholder="/hello?name=hono"
                 />
-                <Button
-                    onClick={() => updateConfig()}
-                >Send</Button>
+                <Button onClick={() => updateConfig()}>Send</Button>
             </div>
-            <div className="flex my-2 gap-2">
-                <pre className={cn("rounded-md bg-gray-100 dark:bg-gray-800 p-2", config.ok ? "text-green-500" : "text-red-500")}>
+            <div className="my-2 flex gap-2">
+                <pre className={cn("rounded-md bg-gray-100 p-2 dark:bg-gray-900", config.ok ? "text-green-500" : "text-red-500")}>
                     <code>{config.statusCode}</code>
                 </pre>
                 <Input
-                    value={Array.from(config.headers).map(([key, value]) => `${key}: ${value}; `).join("\n")}
+                    value={Array.from(config.headers)
+                        .map(([key, value]) => `${key}: ${value}; `)
+                        .join("\n")}
                     readOnly
                     className="w-full outline-none"
                     placeholder="headers"
                 />
             </div>
             <div>
-                <pre className="rounded-md bg-gray-100 dark:bg-gray-800 p-2 text-black dark:text-white">
+                <pre className="rounded-md bg-gray-100 p-2 text-black dark:bg-gray-900 dark:text-white">
                     <code>{config.response}</code>
                 </pre>
             </div>
+            <div className="mt-2 flex">
+                <Badge
+                    className={cn("cursor-pointer", config.response !== "" ? "" : "bg-gray-300 hover:bg-gray-300")}
+                    onClick={() => {
+                        if (config.response === "") return;
+
+                        const blobUrl = createBlob(config.response, config.headers.get("Content-Type") ?? "text/plain");
+                        window.open(blobUrl, "_blank");
+                    }}
+                >
+                    Blob URL
+                </Badge>
+            </div>
         </div>
+        )
     );
+}
+
+function createBlob(text: string, type: string) {
+    const blob = new Blob([text], { type });
+    return URL.createObjectURL(blob);
 }

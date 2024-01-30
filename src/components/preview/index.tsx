@@ -44,9 +44,10 @@ export function Preview({ content }: { content: string }) {
                     console.log("%c[Build] " + Math.floor((end - start) * 100) / 100 + "ms", "color: #00cc00; font-weight: bold;");
                     setBuildStatus("success");
                 })
-                .catch(() => {
+                .catch((_) => {
                     console.log("%c[Build Error] " + Math.floor((end - start) * 100) / 100 + "ms", "color: #cc0000; font-weight: bold;");
                     setBuildStatus("error");
+                    console.error(_);
                 });
         } catch (_) {
             console.log("%c[Build Error]", "color: #cc0000; font-weight: bold;");
