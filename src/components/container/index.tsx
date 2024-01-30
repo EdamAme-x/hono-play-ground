@@ -33,7 +33,7 @@ export function Container() {
                         })
                     }
                 />
-                <Preview content={config.content} setContent={(content: string) => setConfig({ ...config, content })} />
+                <Preview content={config.content} />
             </div>
         </>
     );
