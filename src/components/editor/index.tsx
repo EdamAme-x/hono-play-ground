@@ -1,15 +1,12 @@
-export function Editor({
-    content,
-    setCotent
-}: {
-    content: string;
-    setCotent: (content: string) => void
-}) {
-
-    return <div class="w-full min-h-screen flex justify-center items-center">
-        <textarea
-            onChange={(e: Event) => setCotent((e.target as HTMLTextAreaElement).value)}
-            class="w-[95%] min-h-[95%] p-2 bg-white dark:bg-gray-800 outline-none rounded-md"
-        >{content}</textarea>
-    </div>;
+export function Editor({ content, setCotent }: { content: string; setCotent: (content: string) => void }) {
+    return (
+        <div class="flex min-h-screen w-full items-center justify-center">
+            <textarea
+                onChange={(e: Event) => setCotent((e.target as HTMLTextAreaElement).value)}
+                class="min-h-[95%] w-[95%] rounded-md bg-white p-2 outline-none dark:bg-gray-800"
+            >
+                {content}
+            </textarea>
+        </div>
+    );
 }
