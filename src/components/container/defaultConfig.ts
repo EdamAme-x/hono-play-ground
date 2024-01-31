@@ -1,7 +1,10 @@
 export const defaultConfig = {
-    content: `import { Hono } from 'https://esm.sh/hono'
+    content: `import { Hono } from 'hono'
+import { poweredBy } from 'https://esm.sh/hono/powered-by'
 
 const app = new Hono()
+
+app.use("*", poweredBy())
 
 app.get('/hello', (c) => {
   const name = c.req.query('name')

@@ -2,6 +2,8 @@ import { Hono } from "hono";
 import { useEffect, useState } from "react";
 import initSwc, { transformSync } from "@swc/wasm-web";
 import { Panel } from "./panel";
+import { parseImport } from "./../../lib/parseImport";
+
 const importSource = `import { jsx, Fragment } from 'https://esm.sh/hono/jsx'\n`;
 await initSwc();
 
@@ -15,7 +17,7 @@ export function Preview({ content }: { content: string }) {
             setBuildStatus("building");
             const start = performance.now();
 
-            const { code } = transformSync(importSource + content, {
+            const { code } = transformSync(importSource + parseImport(content), {
                 jsc: {
                     parser: {
                         syntax: "typescript",

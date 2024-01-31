@@ -75,11 +75,13 @@
     }
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
     display: none;
 }
 
-body {
+body,
+textarea {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
