@@ -89,9 +89,9 @@ export function Panel({ app, buildStatus }: { app: Hono; buildStatus: "success" 
                     />
                 </div>
                 <div>
-                    <pre className="rounded-md bg-gray-100 p-2 text-black dark:bg-gray-900 dark:text-white">
-                        <code>{config.response}</code>
-                    </pre>
+                    <div className="rounded-md bg-gray-100 p-2 text-black dark:bg-gray-900 dark:text-white break-all">
+                        {config.response}
+                    </div>
                 </div>
                 <Badges config={config} />
             </div>
