@@ -93,7 +93,7 @@ export function Panel({ app, buildStatus }: { app: Hono; buildStatus: "success" 
                         <code>{config.response}</code>
                     </pre>
                 </div>
-                <Badges config={config} setConfig={setConfig} />
+                <Badges config={config} />
             </div>
         )
     );

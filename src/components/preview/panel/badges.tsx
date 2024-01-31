@@ -7,7 +7,7 @@ import { serializeResponse } from "@/lib/serializeResponse";
 import { LS } from "@/lib/localStorage";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Badges({ config, setConfig }: { config: Config; setConfig: (config: Config) => void }) {
+export function Badges({ config }: { config: Config; }) {
     const [openRawResponse, setOpenRawResponse] = useState<null | string>(null);
 
     const blobURL = () => {
