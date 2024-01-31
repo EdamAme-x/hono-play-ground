@@ -7,7 +7,7 @@
 const regex = /from\s*('|")(.*)('|");?/g;
 
 export function parseImport(source: string) {
-    const result = source.replace(regex, (matched, p1, p2, p3) => {
+    const result = source.replace(regex, (_matched, p1, p2, p3) => {
         if (p2.includes("//")) {
             return `from ${p1}${p2}${p3}`;
         }
