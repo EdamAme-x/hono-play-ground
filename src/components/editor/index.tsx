@@ -16,8 +16,9 @@ export function Editor({ content, setCotent }: { content: string; setCotent: (co
                     LS.set("config", JSON.stringify({ ...JSON.parse(LS.get("config") ?? "{}"), content: value ?? "" }));
                 }}
                 theme={"vs-dark"}
-                defaultLanguage="typescript"
+                defaultLanguage="javascript"
                 language="typescript"
+                // NOTE: Support tsx
             />
         </div>
     );
